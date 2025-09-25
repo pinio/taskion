@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "taskion"
+version = "0.1.0"
+description = "A simple FastAPI to-do application"
+authors = ["Danilo Martins <danilo@pinion.app>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.100.0"
+uvicorn = "^0.23.0"
+pydantic = "^2.0.0"
+montydb = "^2.5.1"
+pymongo = "^4.15.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-asyncio = "^0.21.0"
+httpx = "^0.24.0"
+pytest-mock = "^3.11.0"
+black = "^23.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+pythonpath = ["src"]
