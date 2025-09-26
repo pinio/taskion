@@ -2,11 +2,16 @@
 
 A minimal FastAPI application for managing tasks with CRUD operations using MontyDB (SQLite engine) for storage.
 
+## Dependencies
+
+- Python 3.12+
+- [Poetry](https://python-poetry.org/)
+
 ## Quick Start
 
 ```bash
 # Install dependencies
-poetry install
+poetry install --with=dev
 
 # Run the application
 poetry run python src/main.py
@@ -27,14 +32,14 @@ open http://localhost:8930/docs
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/health` | Health check → `{"status": "ok"}` |
-| POST | `/tasks/` | Create task (201 + TaskOut) |
-| GET | `/tasks/` | List tasks (with ?done, ?limit, ?offset) |
-| GET | `/tasks/{id}` | Get task by ID (404 if not found) |
-| PUT | `/tasks/{id}` | Update task (404 if not found) |
-| DELETE | `/tasks/{id}` | Delete task (204 if success) |
+| Method | Endpoint      | Description                              |
+| ------ | ------------- | ---------------------------------------- |
+| GET    | `/health`     | Health check → `{"status": "ok"}`        |
+| POST   | `/tasks/`     | Create task (201 + TaskOut)              |
+| GET    | `/tasks/`     | List tasks (with ?done, ?limit, ?offset) |
+| GET    | `/tasks/{id}` | Get task by ID (404 if not found)        |
+| PUT    | `/tasks/{id}` | Update task (404 if not found)           |
+| DELETE | `/tasks/{id}` | Delete task (204 if success)             |
 
 ## Data Models
 
@@ -51,7 +56,7 @@ open http://localhost:8930/docs
 ```json
 {
   "id": "string",
-  "title": "string", 
+  "title": "string",
   "description": "string|null",
   "done": "boolean",
   "created_at": "datetime",
@@ -62,13 +67,13 @@ open http://localhost:8930/docs
 ## Testing
 
 ```bash
-poetry run pytest              # Run all tests
-poetry run pytest --cov=src   # With coverage
+poetry run pytest                                      # Run all tests
+poetry run pytest --cov=src  --cov-report=term-missing # With coverage
 ```
 
 ## Project Structure
 
-```
+```shell
 taskion/
 ├── src/
 │   ├── app.py                 # FastAPI app
@@ -77,9 +82,9 @@ taskion/
 │       ├── health/            # Health check
 │       └── tasks/             # Task CRUD
 └── tests/                     # 3 clean test files
-    ├── test_api.py           # API endpoint tests  
-    ├── test_models.py        # Database & Pydantic models
-    └── test_integration.py   # End-to-end tests
+    ├── test_api.py            # API endpoint tests
+    ├── test_models.py         # Database & Pydantic models
+    └── test_integration.py    # End-to-end tests
 ```
 
 Built for code review, learning FastAPI, and recruiting exercises.
